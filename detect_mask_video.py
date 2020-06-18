@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # USAGE
 # python detect_mask_video.py
 
@@ -132,10 +133,10 @@ while True:
 		if not wasCalled:
 			wasCalled = True
 			if mask > withoutMask:
-				engine.say("Você está de máscara")
+				engine.say("Voce esta de mascara")
 				engine.runAndWait()
 			else:
-				engine.say("Por favor, utilize uma máscara")
+				engine.say("Por favor, utilize uma mascara")
 				engine.runAndWait()
 
 		# determine the class label and color we'll use to draw
