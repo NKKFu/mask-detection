@@ -1,7 +1,8 @@
 .vscode
-core/__pycache__
+__pycache__
 weights/
 models/
 *.mp4
 video/
 *.weights
+/config.json

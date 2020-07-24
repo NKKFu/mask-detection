@@ -15,6 +15,8 @@ import cv2
 import os
 import pyttsx3
 
+import slack
+
 engine = pyttsx3.init()
 
 def detect_and_predict_mask(frame, faceNet, maskNet):
@@ -110,6 +112,9 @@ time.sleep(2.0)
 wasCalled = False
 isSomeone = False
 
+# clients counter
+clientsCounter: int = 0
+
 # loop over the frames from the video stream
 while True:
 	frame = vs.read()
@@ -133,11 +138,12 @@ while True:
 		if not wasCalled:
 			wasCalled = True
 			if mask > withoutMask:
-				engine.say("Voce esta de mascara")
+				clientsCounter = clientsCounter + 1
+				print(clientsCounter)
+				engine.say("Entre em nossa loja, obrigado por vir")
 				engine.runAndWait()
-			else:
-				engine.say("Por favor, utilize uma mascara")
-				engine.runAndWait()
+				slack.Slack('Novo cliente entrando em sua loja (' + str(clientsCounter) + ' cliente(s) ja passaram)')
+				time.sleep(2)
 
 		# determine the class label and color we'll use to draw
 		# the bounding box and text
